@@ -8,6 +8,7 @@ import {
 } from 'react-papaparse';
 
 const GREY = '#CCC';
+const BLACK = '#000';
 const GREY_LIGHT = 'rgba(255, 255, 255, 0.4)';
 const DEFAULT_REMOVE_HOVER_COLOR = '#A01919';
 const REMOVE_HOVER_COLOR_LIGHT = lightenDarkenColor(
@@ -49,6 +50,7 @@ const styles = {
   } as CSSProperties,
   size: {
     backgroundColor: GREY_LIGHT,
+    color: BLACK,
     borderRadius: 3,
     marginBottom: '0.5em',
     justifyContent: 'center',
@@ -56,6 +58,7 @@ const styles = {
   } as CSSProperties,
   name: {
     backgroundColor: GREY_LIGHT,
+    color: BLACK,
     borderRadius: 3,
     fontSize: 12,
     marginBottom: '0.5em',
@@ -82,7 +85,7 @@ const styles = {
   } as CSSProperties,
 };
 
-export default function CSVReader() {
+export default function CSVReader({ setResults }) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
@@ -91,9 +94,11 @@ export default function CSVReader() {
 
   return (
     <CSVReader
+      onRemoveFile={(event: Event) => { console.log("file removed", event) }}
       onUploadAccepted={(results: any) => {
         console.log('---------------------------');
         console.log(results);
+        setResults(results);
         console.log('---------------------------');
         setZoneHover(false);
       }}
