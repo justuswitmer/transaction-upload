@@ -35,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-transaction-upload-92f985147655
-.env
-.env
+transaction-upload-ae57c957e381.json
+plaidTokensIgnored.json

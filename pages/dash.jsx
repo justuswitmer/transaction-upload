@@ -22,7 +22,15 @@ export const getServerSideProps = withIronSessionSsr(
       };
     }
 
-    const response = await plaidClient.accountsBalanceGet({ access_token });
+    // const response = await plaidClient.accountsBalanceGet({ access_token });
+    console.log('access_token', access_token);
+    const request = {
+      access_token: access_token,
+      start_date: '2023-01-01',
+      end_date: '2023-12-31'
+    };
+
+    const response = await plaidClient.transactionsGet(request);
     return {
       props: {
         balance: response.data,
